@@ -49,8 +49,8 @@ cmdb.nonProxy=${NOT_PROXY_HOST:-}
 # Azure DevOps api version
 cmdb.apiVersion=${APIVERSION:-5.0-preview.1}
 
-# Azure DevOps api key / use HTTP Basic Auth (blank=no auth)
-cmdb.apiKey=${APIKEY:-}
+# Azure DevOps personal access token
+cmdb.apiKey=${CMDB_PERSONAL_ACCESS_TOKEN:-}
 
 # Azure DevOps project Id
 cmdb.projectId=${PROJECTID:-}
@@ -59,7 +59,7 @@ cmdb.projectId=${PROJECTID:-}
 cmdb.organizationName=${ORGANIZATIONNAME:-}
 
 # Azure DevOps publisher extension
-cmdb.publisher=${PUBLISHER:-}
+cmdb.publisher=${PUBLISHER:-davidpolaniaac}
 
 EOF
 

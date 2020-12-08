@@ -1,7 +1,9 @@
 package com.capitalone.dashboard.configuration;
 
 import java.net.URI;
+import java.nio.charset.StandardCharsets;
 
+import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -10,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.retry.annotation.Backoff;
 import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestOperations;
 
 import com.capitalone.dashboard.collector.CmdbSettings;
@@ -54,15 +57,18 @@ public class ApiRest {
 
 			return rest.exchange(thisuri, method, new HttpEntity<>(createHeaders(apikey)), responseType);
 
-		} catch (Exception e) {
+		} catch (RestClientException e) {
 			throw e;
 		}
 	}
 
 	protected HttpHeaders createHeaders(final String apiKey) {
-
+		String auth = "hygieia" + ":" + apiKey;
+		byte[] encodedAuth = Base64.encodeBase64(auth.getBytes(StandardCharsets.US_ASCII));
+		String authHeader = "Basic " + new String(encodedAuth);
+		
 		HttpHeaders headers = new HttpHeaders();
-		headers.set(HttpHeaders.AUTHORIZATION, apiKey);
+		headers.set(HttpHeaders.AUTHORIZATION, authHeader);
 		headers.set(HttpHeaders.ACCEPT, "application/json");
 		return headers;
 	}
