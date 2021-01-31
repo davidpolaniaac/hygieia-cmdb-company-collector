@@ -90,11 +90,11 @@ cmdb.nonProxy=
 # Azure DevOps api version
 cmdb.apiVersion=5.0-preview.1
 
-# Azure DevOps api key / Basic token
-cmdb.apiKey=Basic xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+# Azure DevOps personal access token
+cmdb.apiKey=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
-# Azure DevOps project Id
-cmdb.projectId=xxxxxxxxxxxxxxxxxxxxxxxxxxxx
+# Azure DevOps project name
+cmdb.project=xxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 # Azure DevOps organization Name or Account Name
 cmdb.organizationName=xxxxxxxxxxxxxxxxxxxxxxx
