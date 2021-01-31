@@ -52,7 +52,7 @@ public class AzUrlUtilityImpl implements AzUrlUtility {
 	public String getProject(String project) {
 		return UriComponentsBuilder.fromUriString(AZURE_DEVPOS_BASE).pathSegment(settings.getOrganizationName())
 				.pathSegment(API).pathSegment(PROJECTS).pathSegment(project)
-				.queryParam(API_VERSION, settings.getApiVersion()).build(true).toString();
+				.queryParam(API_VERSION, settings.getApiVersion()).build().toUri().toASCIIString();
 	}
 
 }
