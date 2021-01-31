@@ -14,6 +14,9 @@ public class AzUrlUtilityImpl implements AzUrlUtility {
 	private static final String COLLECTION = "company/Data/Scopes/Default/Current/Collections";
 	private static final String DOCUMENTS = "Documents";
 	private static final String API_VERSION = "api-version";
+	private static final String AZURE_DEVPOS_BASE = "https://dev.azure.com";
+	private static final String API = "_apis";
+	private static final String PROJECTS = "projects";
 
 	private final CmdbSettings settings;
 
@@ -43,6 +46,13 @@ public class AzUrlUtilityImpl implements AzUrlUtility {
 
 		return UriComponentsBuilder.fromUriString(BASE).pathSegment(settings.getOrganizationName())
 				.path(SEGMENT_EXTENSION).pathSegment(settings.getPublisher()).path(COLLECTION);
+	}
+
+	@Override
+	public String getProject(String project) {
+		return UriComponentsBuilder.fromUriString(AZURE_DEVPOS_BASE).pathSegment(settings.getOrganizationName())
+				.pathSegment(API).pathSegment(PROJECTS).pathSegment(project)
+				.queryParam(API_VERSION, settings.getApiVersion()).build(true).toString();
 	}
 
 }

@@ -54,10 +54,11 @@ public class CmdbClientImpl implements CmdbClient {
 
 		List<Cmdb> cmdbList = new ArrayList<>();
 		List<DocumentManagement> elements = new ArrayList<>();
-		List<Document> domains = documentService.getDocuments(cmdbSettings.getProjectId());
+		String projectId = documentService.getProjectId(cmdbSettings.getProject());
+		List<Document> domains = documentService.getDocuments(projectId);
 		if (domains.isEmpty()) {
 			LOG.error("Collection empty: " + MainCollection.MANAGEMENTS.toString() + " - " + "CollectionId: "
-					+ cmdbSettings.getProjectId());
+					+ projectId);
 		}
 		domains.parallelStream().forEach(domain -> {
 			DocumentManagement management = new DocumentManagement(domain.getName(), domain.getId());
@@ -108,9 +109,9 @@ public class CmdbClientImpl implements CmdbClient {
 
 				Cmdb cmdb = new Cmdb();
 
-				cmdb.setConfigurationItem(app.getId());
+				cmdb.setConfigurationItem(app.getName());
 				cmdb.setConfigurationItemSubType(element.getId());
-				cmdb.setConfigurationItemType(CmdbType.APP.toString());
+				cmdb.setConfigurationItemType(app.getId());
 				cmdb.setCommonName(app.getName());
 				cmdb.setAssignmentGroup(element.getName());
 				cmdb.setOwnerDept(element.getName());
@@ -153,9 +154,9 @@ public class CmdbClientImpl implements CmdbClient {
 
 				Cmdb cmdb = new Cmdb();
 
-				cmdb.setConfigurationItem(appEnvironment.getId());
+				cmdb.setConfigurationItem(appEnvironment.getName());
 				cmdb.setConfigurationItemSubType(element.getId());
-				cmdb.setConfigurationItemType(CmdbType.ENVIRONMENT.toString());
+				cmdb.setConfigurationItemType(appEnvironment.getId());
 				cmdb.setCommonName(appEnvironment.getName());
 				cmdb.setAssignmentGroup(element.getName());
 				cmdb.setOwnerDept(element.getName());
@@ -194,9 +195,9 @@ public class CmdbClientImpl implements CmdbClient {
 			for (Document component : compnentes) {
 
 				Cmdb cmdb = new Cmdb();
-				cmdb.setConfigurationItem(component.getId());
+				cmdb.setConfigurationItem(component.getName());
+				cmdb.setConfigurationItemType(component.getId());
 				cmdb.setConfigurationItemSubType(element.getId());
-				cmdb.setConfigurationItemType(CmdbType.COMPONENT.toString());
 				cmdb.setCommonName(component.getName());
 				cmdb.setAssignmentGroup(element.getName());
 				cmdb.setOwnerDept(element.getName());

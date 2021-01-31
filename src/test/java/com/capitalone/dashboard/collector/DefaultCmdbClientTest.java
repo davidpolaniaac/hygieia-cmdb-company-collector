@@ -64,7 +64,7 @@ public class DefaultCmdbClientTest {
 		Mockito.when(documentService.getDocuments(any())).thenReturn(apps);
 
 		List<Cmdb> result = defaultCmdbClient.getApps();
-		Assert.assertEquals("app", result.get(0).getConfigurationItemType());
+		Assert.assertEquals("app", result.get(0).getItemType());
 	}
 
 	@Test
@@ -78,7 +78,7 @@ public class DefaultCmdbClientTest {
 		Mockito.when(documentService.getDocuments(any())).thenReturn(apps);
 
 		List<Cmdb> result = defaultCmdbClient.getApps();
-		Assert.assertEquals("app", result.get(0).getConfigurationItemType());
+		Assert.assertEquals("app", result.get(0).getItemType());
 		Assert.assertEquals("development", result.get(0).getEnvironments().get(0));
 
 	}

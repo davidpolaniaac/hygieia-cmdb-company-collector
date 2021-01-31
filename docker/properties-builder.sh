@@ -52,8 +52,8 @@ cmdb.apiVersion=${APIVERSION:-5.0-preview.1}
 # Azure DevOps personal access token
 cmdb.apiKey=${CMDB_PERSONAL_ACCESS_TOKEN:-}
 
-# Azure DevOps project Id
-cmdb.projectId=${PROJECTID:-}
+# Azure DevOps project
+cmdb.project=${PROJECT:-}
 
 # Azure DevOps publisher extension
 cmdb.organizationName=${ORGANIZATIONNAME:-}

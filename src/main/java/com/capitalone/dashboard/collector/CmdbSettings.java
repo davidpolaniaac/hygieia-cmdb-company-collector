@@ -12,6 +12,7 @@ public class CmdbSettings {
 	
 	private String cron;
 	private String projectId;
+	private String project;
 	private String publisher;
     private String apiKey;
 	private String proxyHost;
@@ -20,6 +21,13 @@ public class CmdbSettings {
     private String apiVersion;
     private String organizationName;
     
+    
+	public String getProject() {
+		return project;
+	}
+	public void setProject(String project) {
+		this.project = project;
+	}
 	public String getCron() {
 		return cron;
 	}

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import com.capitalone.dashboard.configuration.ApiRest;
 import com.capitalone.dashboard.configuration.AzUrlUtility;
+import com.capitalone.dashboard.model.AzureDevOpsProject;
 import com.capitalone.dashboard.model.Document;
 import com.capitalone.dashboard.model.ReponseCollection;
 
@@ -134,6 +135,20 @@ public class DocumentServiceImpl implements DocumentService {
 		}
 
 		return result;
+	}
+	
+	@Override
+	public String getProjectId(String project) {
+		String projectId = null;
+		try {
+			String urlproject= azUrlUtility.getProject(project);
+			ResponseEntity<AzureDevOpsProject> responseProject = apiRest.restCall(HttpMethod.GET, urlproject, AzureDevOpsProject.class);
+			projectId = responseProject.getBody().getID();
+			
+		} catch (Exception e) {
+			LOG.error("Get project Id: " + project, e.getMessage());
+		}
+		return projectId;
 	}
 
 }

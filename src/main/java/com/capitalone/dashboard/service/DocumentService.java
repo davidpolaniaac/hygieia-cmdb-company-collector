@@ -17,5 +17,7 @@ public interface DocumentService {
 	Document setDocument(Document document);
 
 	boolean deleteDocument(Document document);
+	
+	String getProjectId(String project) ;
 
 }
