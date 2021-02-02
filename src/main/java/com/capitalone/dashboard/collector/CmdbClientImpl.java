@@ -126,7 +126,7 @@ public class CmdbClientImpl implements CmdbClient {
 				List<String> environments = app.getEnviroments().parallelStream().map(env -> env.getId()).distinct()
 						.collect(Collectors.toList());
 				List<String> components = app.getEnviroments().parallelStream().map(env -> env.getComponents())
-						.flatMap(componentes -> componentes.stream()).map(com -> com.getId()).distinct().sorted()
+						.flatMap(componentes -> componentes.stream()).map(com -> com.getName()).distinct().sorted()
 						.collect(Collectors.toList());
 
 				cmdb.setEnvironments(environments);
@@ -168,7 +168,7 @@ public class CmdbClientImpl implements CmdbClient {
 				cmdb.setValidConfigItem(true);
 				cmdb.setTimestamp(System.currentTimeMillis());
 
-				List<String> components = appEnvironment.getComponents().parallelStream().map(com -> com.getId())
+				List<String> components = appEnvironment.getComponents().parallelStream().map(com -> com.getName())
 						.distinct().sorted().collect(Collectors.toList());
 
 				cmdb.setComponents(components);
